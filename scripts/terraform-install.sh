@@ -18,6 +18,8 @@ if ! command -v jq &> /dev/null; then
   sudo apt-get install -y jq
 fi
 
+cd /tmp
+
 # Скачиваем архив Terraform
 curl -O https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 

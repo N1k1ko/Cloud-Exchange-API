@@ -32,7 +32,8 @@ terraform/
 ```
 * Yandex CLI (yc)
 ```bash
-./scripts/yc-install.sh && yc init
+./scripts/yc-install.sh
+yc init
 ```
 * ssh-keygen для подключения по SSH (если нет ключа)
 ```bash
@@ -46,9 +47,9 @@ ssh-keygen -t rsa -b 4096
 cp terraform/terraform.tfvars.example terraform/terraform.tfvars
 ```
 Заполни:
-* yc_token, yc_cloud_id, yc_folder_id — из yc config list
+* yc_token, yc_cloud_id, yc_folder_id — из ```yc config list```
 * db_password, access_key, secret_key — безопасные значения
-* bucket_name, access_key, secret_key - из (./scripts/yc-create-service-account.sh) или уже созданного service account
+* bucket_name, access_key, secret_key - из ```./scripts/yc-create-service-account.sh``` или уже созданного service account
 * git_repo — публичный Git-репозиторий с docker-compose.yml
 
 ### 3. Запуск Terraform
