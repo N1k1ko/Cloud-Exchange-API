@@ -23,11 +23,7 @@ KEYS=$(yc iam access-key create --service-account-id "$SA_ID")
 ACCESS_KEY=$(echo "$KEYS" | grep key_id | awk '{print $2}')
 SECRET_KEY=$(echo "$KEYS" | grep secret | awk '{print $2}')
 
-# === 4. Создание бакета ===
-echo "Создаю бакет: $BUCKET_NAME"
-yc storage bucket create --name "$BUCKET_NAME"
-
-# === 5. Вывод итоговых данных ===
+# === 4. Вывод итоговых данных ===
 echo ""
 echo "Объектное хранилище создано:"
 echo "bucket_name = \"$BUCKET_NAME\""
