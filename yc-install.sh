@@ -7,6 +7,3 @@ echo "Установка Yandex CLI..."
 curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 
 exec -l $SHELL
-
-# Опционально: вывод версии
-yc --version

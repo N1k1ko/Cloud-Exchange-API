@@ -33,4 +33,6 @@ rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
 # Проверяем версию установленного Terraform
 terraform -version
 
+rm ./LICENSE.txt
+
 echo "Terraform установлен успешно!"
