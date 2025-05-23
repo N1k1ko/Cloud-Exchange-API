@@ -13,10 +13,15 @@ FastAPI в Yandex Cloud с Terraform
 
 ## Развёртывание
 ### 1. Установи зависимости
-* Terraform [bash terraform-install.sh]
-* Yandex CLI (yc) [bash yc-install.sh && yc init]
+* Terraform 
+```bash
+./scripts/terraform-install.sh
+```
+* Yandex CLI (yc)
+```bash
+./scripts/yc-install.sh && yc init
+```
 * ssh-keygen для подключения по SSH (если нет ключа)
-
 ```bash
 ssh-keygen -t rsa -b 4096
 ```
@@ -30,7 +35,7 @@ cp infra/terraform/terraform.tfvars.example infra/terraform/terraform.tfvars
 Заполни:
 * yc_token, yc_cloud_id, yc_folder_id — из yc config list
 * db_password, access_key, secret_key — безопасные значения
-* bucket_name, access_key, secret_key - из yc-create-bucket.sh или уже созданного Object Storage
+* bucket_name, access_key, secret_key - из (./scripts/yc-create-bucket.sh) или уже созданного Object Storage
 * git_repo — публичный Git-репозиторий с docker-compose.yml
 
 ### 3. Запуск Terraform
