@@ -1,0 +1,17 @@
+# Авторизационные данные
+yc_token      = "your-yandex-cloud-token"
+yc_cloud_id   = "your-cloud-id"
+yc_folder_id  = "your-folder-id"
+
+# Настройки PostgreSQL
+db_name     = "appdb"
+db_user     = "appuser"
+db_password = "strong-password"
+
+# Object Storage
+bucket_name = "your-bucket-name"
+access_key  = "your-access-key"
+secret_key  = "your-secret-key"
+
+# Ссылка на публичный репозиторий с docker-compose и кодом приложения
+git_repo = "https://github.com/your-user/your-fastapi-project.git"
