@@ -35,11 +35,12 @@ cp infra/terraform/terraform.tfvars.example infra/terraform/terraform.tfvars
 Заполни:
 * yc_token, yc_cloud_id, yc_folder_id — из yc config list
 * db_password, access_key, secret_key — безопасные значения
-* bucket_name, access_key, secret_key - из (./scripts/yc-create-bucket.sh) или уже созданного Object Storage
+* bucket_name, access_key, secret_key - из (./scripts/yc-create-service-account.sh) или уже созданного service account
 * git_repo — публичный Git-репозиторий с docker-compose.yml
 
 ### 3. Запуск Terraform
 ```bash
+cd ./infra/terraform
 terraform init       # Инициализация
 terraform plan       # Просмотр плана
 terraform apply      # Применение

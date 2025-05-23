@@ -1,3 +1,13 @@
+terraform {
+  required_providers {
+    yandex = {
+      source  = "yandex-cloud/yandex"
+      version = "~> 0.95"
+    }
+  }
+  required_version = ">= 1.5.0"
+}
+
 # Подключение к провайдеру Yandex Cloud
 provider "yandex" {
   token     = var.yc_token
@@ -42,9 +52,11 @@ resource "yandex_mdb_postgresql_cluster" "pg_cluster" {
 
 # Создание базы данных внутри кластера
 resource "yandex_mdb_postgresql_database" "app_db" {
+  depends_on = [yandex_mdb_postgresql_user.app_user]
+
   cluster_id = yandex_mdb_postgresql_cluster.pg_cluster.id
   name       = var.db_name
-  owner      = var.db_user
+  owner      = yandex_mdb_postgresql_user.app_user.name
 }
 
 # Пользователь БД
@@ -63,41 +75,5 @@ resource "yandex_storage_bucket" "static_files" {
   anonymous_access_flags {
     read = true  # Позволяет анонимно читать статические файлы (например, изображения)
     list = false # Запрет на просмотр списка файлов
-  }
-}
-
-# Compute Instance для развёртывания приложения через docker-compose
-resource "yandex_compute_instance" "fastapi_instance" {
-  name        = "fastapi-docker"
-  zone        = "ru-central1-a"
-  platform_id = "standard-v1"
-
-  resources {
-    cores  = 2    # Количество CPU
-    memory = 2    # ОЗУ в ГБ
-  }
-
-  boot_disk {
-    initialize_params {
-      image_id = "fd87n7p7ae2rbv1qqctb" # Docker-совместимый образ Yandex Cloud
-    }
-  }
-
-  network_interface {
-    subnet_id = yandex_vpc_subnet.fastapi_subnet.id
-    nat       = true # Включение доступа в интернет
-  }
-
-  metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}" # SSH-доступ для управления
-    user-data = <<-EOF
-      #cloud-config
-      runcmd:
-        - apt update
-        - apt install -y docker.io docker-compose
-        - git clone ${var.git_repo} app
-        - cd app
-        - docker-compose up -d
-    EOF
   }
 }
