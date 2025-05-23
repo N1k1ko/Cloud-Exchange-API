@@ -12,6 +12,3 @@ db_password = "strong-password"
 bucket_name = "your-bucket-name"
 access_key  = "your-access-key"
 secret_key  = "your-secret-key"
-
-# Ссылка на публичный репозиторий с docker-compose и кодом приложения
-git_repo = "https://github.com/your-user/your-fastapi-project.git"

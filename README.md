@@ -1,15 +1,28 @@
 # Cloud-Exchange-API
 
-
 FastAPI в Yandex Cloud с Terraform    
 Этот проект разворачивает FastAPI-приложение с PostgreSQL и Object Storage в Yandex Cloud, используя Terraform.
 
-Состав проекта
-* main.tf — описание инфраструктуры (БД, сеть, инстанс и т.д.)
-* variables.tf — объявление переменных
-* terraform.tfvars.example — пример значений переменных
-* docker-compose.yml + Dockerfile — FastAPI-приложение с БД
-* FastAPI-код — внутри директории app/
+Структура проекта
+```css
+terraform/
+├── main.tf                # Подключение модулей
+├── variables.tf           # Глобальные переменные
+├── outputs.tf             # Глобальные outputs
+├── modules/
+│   ├── vpc/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   ├── postgres/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
+│   └── storage/
+│       ├── main.tf
+│       ├── variables.tf
+│       └── outputs.tf
+```
 
 ## Развёртывание
 ### 1. Установи зависимости
@@ -30,7 +43,7 @@ ssh-keygen -t rsa -b 4096
 Сохрани свои значения в terraform.tfvars:
 
 ```bash
-cp infra/terraform/terraform.tfvars.example infra/terraform/terraform.tfvars
+cp terraform/terraform.tfvars.example terraform/terraform.tfvars
 ```
 Заполни:
 * yc_token, yc_cloud_id, yc_folder_id — из yc config list
@@ -40,7 +53,7 @@ cp infra/terraform/terraform.tfvars.example infra/terraform/terraform.tfvars
 
 ### 3. Запуск Terraform
 ```bash
-cd ./infra/terraform
+cd ./terraform
 terraform init       # Инициализация
 terraform plan       # Просмотр плана
 terraform apply      # Применение
@@ -52,3 +65,8 @@ terraform apply      # Применение
 terraform output
 ```
 Открой IP в браузере
+
+## Удаление
+```bash
+terraform destroy
+```
