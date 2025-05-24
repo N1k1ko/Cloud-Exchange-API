@@ -12,7 +12,7 @@ provider "yandex" {
   token     = var.yc_token
   cloud_id  = var.yc_cloud_id
   folder_id = var.yc_folder_id
-  zone      = "ru-central1-a"
+  zone      = var.zone
 }
 
 module "vpc" {
@@ -38,7 +38,7 @@ module "storage" {
 module "compute_cloud" {
   source     = "./modules/compute_cloud"
   name       = "compute_cloud"
-  zone       = "ru-central1-a"
+  zone       = var.zone
   subnet_id  = module.vpc.subnet_id
   public_key = file("~/.ssh/id_rsa.pub")
 }

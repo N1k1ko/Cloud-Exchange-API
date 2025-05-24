@@ -51,6 +51,7 @@ ssh-keygen -t rsa -b 4096
 cp terraform/terraform.tfvars.example terraform/terraform.tfvars
 ```
 Заполни:
+* zone - на своё усмотрение
 * yc_token, yc_cloud_id, yc_folder_id — из ```yc config list```
 * db_password, access_key, secret_key — безопасные значения
 * bucket_name, access_key, secret_key - из ```./scripts/yc-create-service-account.sh``` или уже созданного service account

@@ -1,3 +1,5 @@
+zone = "ru-central1-a"
+
 # Авторизационные данные
 yc_token      = "your-yandex-cloud-token"
 yc_cloud_id   = "your-cloud-id"
