@@ -17,6 +17,4 @@ access_key  = "your-access-key"
 secret_key  = "your-secret-key"
 
 # Настроки приложения
-app_host        = "localhost"
-app_port        = "80"
 app_admin_name  = "admin"

@@ -12,15 +12,16 @@ resource "yandex_compute_instance" "app_vm" {
   zone        = var.zone
 
   resources {
-    cores         = 2
-    memory        = 2
-    core_fraction = 20
+    cores         = 4      # увеличить число ядер CPU (например, с 2 до 4)
+    memory        = 8      # увеличить оперативную память в ГБ (например, с 2 до 8)
+    core_fraction = 100    # увеличить выделенную долю CPU (максимум 100)
   }
 
   boot_disk {
     initialize_params {
       image_id = var.image_id
-      size     = 10
+      size     = 20  # размер диска 20 ГБ
+      type     = "network-ssd"  # для SSD
     }
   }
 
