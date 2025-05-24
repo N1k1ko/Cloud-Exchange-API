@@ -41,19 +41,19 @@ module "app_instance" {
   instance_name   = "fastapi-vm"
   zone            = var.zone
   subnet_id       = module.vpc.subnet_id
-  image_id        = "fd8pqh8k89hduvlrk1de" # Ubuntu 22.04 LTS (пример)
+  image_id        = "fd85u0rct32prepgjlv0" # Ubuntu 22.04 LTS (пример)
   ssh_public_key  = file("~/.ssh/id_rsa.pub")
   docker_image    = var.docker_image
 
   env_vars = {
-    APP__RUN__HOST              = "$var.app_host"
-    APP__RUN__PORT              = "$var.app_port"
-    APP__DB__HOST               = "$module.postgres.pg_cluster_hosts"
+    APP__RUN__HOST              = var.app_host
+    APP__RUN__PORT              = var.app_port
+    APP__DB__HOST               = module.postgres.pg_cluster_hosts[0]
     APP__DB__PORT               = "6432"
-    APP__DB__USERNAME           = "$var.db_user"
-    APP__DB__PASSWORD           = "$var.db_password"
-    APP__DB__NAME               = "$var.db_name"
-    APP__DEFAULT_ADMIN__NAME    = "$var.app_admin_name"
+    APP__DB__USERNAME           = var.db_user
+    APP__DB__PASSWORD           = var.db_password
+    APP__DB__NAME               = var.db_name
+    APP__DEFAULT_ADMIN__NAME    = var.app_admin_name
     APP__DEFAULT_ADMIN__API_KEY = "3489da3e-1c5e-4ba6-bd8b-f7cc2e9c0d23"
   }
 }
