@@ -10,6 +10,10 @@ terraform/
 ├── variables.tf           # Глобальные переменные
 ├── outputs.tf             # Глобальные outputs
 ├── modules/
+│   ├── compute_cloud/
+│   │   ├── main.tf
+│   │   ├── variables.tf
+│   │   └── outputs.tf
 │   ├── vpc/
 │   │   ├── main.tf
 │   │   ├── variables.tf

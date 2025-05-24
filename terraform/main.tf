@@ -34,3 +34,11 @@ module "storage" {
   access_key  = var.access_key
   secret_key  = var.secret_key
 }
+
+module "compute_cloud" {
+  source     = "./modules/compute_cloud"
+  name       = "compute_cloud"
+  zone       = "ru-central1-a"
+  subnet_id  = module.vpc.subnet_id
+  public_key = file("~/.ssh/id_rsa.pub")
+}
