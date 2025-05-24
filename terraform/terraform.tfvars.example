@@ -1,4 +1,5 @@
-zone = "ru-central1-a"
+zone         = "ru-central1-a"
+docker_image = ""cr.yandex/<your-registry>/<your-image>:latest"
 
 # Авторизационные данные
 yc_token      = "your-yandex-cloud-token"

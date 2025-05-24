@@ -1,4 +1,5 @@
 variable "zone" {}
+variable "docker_image" {}
 
 variable "yc_token" {}
 variable "yc_cloud_id" {}
