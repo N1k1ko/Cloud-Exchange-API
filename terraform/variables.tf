@@ -3,12 +3,6 @@ variable "docker_image" {
   type        = string
 }
 
-variable "app_host" {
-  type        = string
-}
-variable "app_port" {
-  type        = string
-}
 variable "app_admin_name" {
   type        = string
  }
