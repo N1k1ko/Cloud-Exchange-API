@@ -1,61 +1,69 @@
 # Cloud-Exchange-API
-
 FastAPI в Yandex Cloud с Terraform    
 Этот проект разворачивает FastAPI-приложение с PostgreSQL и Object Storage в Yandex Cloud, используя Terraform.
 
 Структура проекта
 ```css
-scripts/
-├── dependencies/
-│   ├── generate_ssh.sh
-│   ├── terraform-install.sh
-│   └── yc-install.sh
-├── init-settings/
-│   ├── save_vars.sh
-│   └── yc-init-service-account.sh
-├── init-settings.sh
-├── install-dependencies.sh
-└── start-terraform.sh
 terraform/
-├── main.tf                # Подключение модулей
-├── variables.tf           # Глобальные переменные
-├── outputs.tf             # Глобальные outputs
-├── modules/
-│   ├── app_instance/
-│   │   ├── cloud-init.tpl
+├── modules
+│   ├── app
+│   │   ├── declaration.yaml
 │   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── outputs.tf
-│   ├── vpc/
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── postgres
 │   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── outputs.tf
-│   ├── postgres/
+│   │   ├── outputs.tf
+│   │   └── variables.tf
+│   ├── storage
 │   │   ├── main.tf
-│   │   ├── variables.tf
-│   │   └── outputs.tf
-│   └── storage/
+│   │   └── variables.tf
+│   └── vpc
 │       ├── main.tf
-│       ├── variables.tf
-│       └── outputs.tf
+│       ├── outputs.tf
+│       └── variables.tf
+├── main.tf
+├── outputs.tf
+└── variables.tf
 ```
 
 ## Развёртывание
+### Зависимости (установить если требуется)
+* Terraform 
 ```bash
-source start.sh
+bash ./scripts/terraform-install.sh
+```
+* Yandex CLI (yc) + профиль
+```bash
+bash ./scripts/yc-install.sh
+exec -l $SHELL
+yc init
+```
+* ssh-keygen для подключения по SSH
+```bash
+bash ./scripts/generate_ssh.sh
 ```
 
-### Зависимости
-* Terraform 
-* Yandex CLI (yc) - полуавтоматически
-* ssh-keygen для подключения по SSH
+## Настройки Terraform
+```bash
+cp terraform/terraform.tfvars.example terraform/terraform.tfvars
+source ./scripts/yc-env.sh
+```
+Вручную заполнить terraform/terraform.tfvars
+
+## Запуск Terraform
+```bash
+cd terraform/
+terraform init
+terraform apply
+```
 
 ## Проверка
-После apply терраформа получи IP ВМ:
+После apply терраформа получить IP ВМ:
 ```bash
 terraform output
 ```
-Открой IP в браузере
+Открыть IP в браузере
 
 ## Удаление
 ```bash

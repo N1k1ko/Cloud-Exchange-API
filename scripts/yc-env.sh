@@ -1,4 +1,5 @@
 #!/bin/bash
+set +e
 
 # === Настраиваемые переменные ===
 SERVICE_ACCOUNT_NAME="app-admin"

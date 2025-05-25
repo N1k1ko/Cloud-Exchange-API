@@ -1,0 +1,24 @@
+# Основные настройки
+zone            = "ru-central1-a" # ru-central1-[a,b,c]
+app_image_tag   = "cr.yandex/<id_репозитория>/<имя_образа>:latest"
+ssh_key         = "<ssh-ключ>"
+
+# Настройки приложения
+app_admin_name  = "<имя_аккаунта>"
+app_admin_key   = "<токен_акаунта>"
+
+# Настройки PostgreSQL
+db_name         = "<имя_базы_данных>"
+db_user         = "<пользователь_базы_данных>"
+db_password     = "<пароль_базы_данных>"
+
+# Бакет
+bucket_name     = "<имя_бакета>"
+
+# Передаются через переменные окружения
+# yc_cloud_id  - id облака
+# yc_folder_id - id папки в облаке
+# yc_token     - iam токен                       
+# access_key   - ключ доступа сервисного акаунта
+# secret_key   - секретный ключ сервисного акаунта
+
