@@ -1,10 +1,6 @@
 #!/bin/bash
 set +e
 
-if [[ "${FLAG_APP_SETTINGS:-0}" -eq 1 ]]; then
-    return 0
-fi
-
 # === YandexCLI профиль для terraform ===
 export TF_VAR_yc_token=$(yc iam create-token)
 export TF_VAR_yc_cloud_id=$(yc config get cloud-id)
