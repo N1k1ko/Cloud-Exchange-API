@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # Путь и имя ключа
 KEY_NAME=${1:-~/.ssh/id_rsa}

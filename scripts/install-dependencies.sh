@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 
 # === Terraform ===
 if ! command -v terraform &> /dev/null; then
@@ -10,8 +11,8 @@ terraform version
 echo ""
 
 # === YandexCLI ===
-if ! command -v terraform &> /dev/null; then
-    ./scripts/dependencies/terraform-install.sh
+if ! command -v yc &> /dev/null; then
+    ./scripts/dependencies/yc-install.sh
 fi
 
 echo "YandexCLI установлен:"

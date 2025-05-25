@@ -6,4 +6,4 @@ echo "Установка Yandex CLI..."
 # Загружаем официальный скрипт установки и запускаем
 curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 
-exec -l $SHELL
+export PATH="$HOME/yandex-cloud/bin:$PATH"
