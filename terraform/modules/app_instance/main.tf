@@ -6,6 +6,10 @@ terraform {
   }
 }
 
+data "yandex_compute_image" "container-optimized-image" {
+  family = "container-optimized-image"
+}
+
 resource "yandex_compute_instance" "app_vm" {
   name        = var.instance_name
   platform_id = "standard-v1"
@@ -19,7 +23,7 @@ resource "yandex_compute_instance" "app_vm" {
 
   boot_disk {
     initialize_params {
-      image_id = var.image_id
+      image_id = data.yandex_compute_image.container-optimized-image.id
       size     = 20  # размер диска 20 ГБ
       type     = "network-ssd"  # для SSD
     }
@@ -30,11 +34,12 @@ resource "yandex_compute_instance" "app_vm" {
     nat       = true
   }
 
-  metadata = {
-    ssh-keys  = "ubuntu:${var.ssh_public_key}"
-    user-data = templatefile("${path.module}/cloud-init.tpl", {
-      docker_image = var.docker_image
-      env_vars     = var.env_vars
-    })
+metadata = {
+    ssh-keys = "ubuntu:${var.ssh_public_key}"
+    docker-container-declaration = templatefile("${path.module}/declaration.yaml", {
+    docker_image = var.docker_image
+    env_vars     = var.env_vars
+  })
+    #user-data = file("${path.module}/cloud_config.yaml")
   }
 }

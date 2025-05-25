@@ -1,0 +1,9 @@
+spec:
+  containers:
+    - name: exchange-app
+      image: ${docker_image}
+      env:
+%{ for key, value in env_vars ~}
+        - name: ${key}
+          value: "${value}"
+%{ endfor ~}
