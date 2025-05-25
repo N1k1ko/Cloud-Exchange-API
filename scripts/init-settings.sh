@@ -1,7 +1,7 @@
 #!/bin/bash
 set +e
 
-if [[ $FLAG_APP_PORT_SET -eq 1 ]]; then
+if [[ "${FLAG_APP_SETTINGS:-0}" -eq 1 ]]; then
     return 0
 fi
 

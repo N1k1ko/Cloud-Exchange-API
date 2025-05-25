@@ -11,5 +11,7 @@ terraform plan -out=tfplan
 echo "✅ Применение изменений..."
 terraform apply -auto-approve tfplan
 
+rm -f tfplan
+
 echo "🎉 Готово!"
 cd -
