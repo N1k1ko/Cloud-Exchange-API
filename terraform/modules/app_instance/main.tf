@@ -40,6 +40,5 @@ metadata = {
     docker_image = var.docker_image
     env_vars     = var.env_vars
   })
-    #user-data = file("${path.module}/cloud_config.yaml")
   }
 }
