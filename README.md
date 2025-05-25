@@ -5,6 +5,17 @@ FastAPI в Yandex Cloud с Terraform
 
 Структура проекта
 ```css
+scripts/
+├── dependencies/
+│   ├── generate_ssh.sh
+│   ├── terraform-install.sh
+│   └── yc-install.sh
+├── init-settings/
+│   ├── save_vars.sh
+│   └── yc-init-service-account.sh
+├── init-settings.sh
+├── install-dependencies.sh
+└── start-terraform.sh
 terraform/
 ├── main.tf                # Подключение модулей
 ├── variables.tf           # Глобальные переменные

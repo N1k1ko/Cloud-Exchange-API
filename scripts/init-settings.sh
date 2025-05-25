@@ -1,5 +1,5 @@
 #!/bin/bash
-set +e
+set -e
 
 # === YandexCLI профиль для terraform ===
 export TF_VAR_yc_token=$(yc iam create-token)
