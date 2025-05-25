@@ -5,7 +5,7 @@ set -e
 echo "Запуск зависимости"
 source ./scripts/install-dependencies.sh
 
-# === Настройки ===
+# === Настройки окружения ===
 echo "Запуск настройки"
 source ./scripts/init-settings.sh
 

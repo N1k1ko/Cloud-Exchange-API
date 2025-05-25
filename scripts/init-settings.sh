@@ -1,5 +1,9 @@
 #!/bin/bash
-set -e
+set +e
+
+if [[ $FLAG_APP_PORT_SET -eq 1 ]]; then
+    return 0
+fi
 
 # === YandexCLI профиль для terraform ===
 export TF_VAR_yc_token=$(yc iam create-token)
@@ -20,3 +24,9 @@ export TF_VAR_docker_image="cr.yandex/crpf9fimok8vnj8h3skl/exchange-api:latest"
 
 # Настроки приложения
 export TF_VAR_app_admin_name="admin"
+
+# === Флаг настроек ===
+export FLAG_APP_SETTINGS=1
+
+# === Сохранить ===
+source ./scripts/init-settings/save_vars.sh
