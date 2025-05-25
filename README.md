@@ -5,6 +5,17 @@ FastAPI в Yandex Cloud с Terraform
 
 Структура проекта
 ```css
+scripts/
+├── dependencies/
+│   ├── generate_ssh.sh
+│   ├── terraform-install.sh
+│   └── yc-install.sh
+├── init-settings/
+│   ├── save_vars.sh
+│   └── yc-init-service-account.sh
+├── init-settings.sh
+├── install-dependencies.sh
+└── start-terraform.sh
 terraform/
 ├── main.tf                # Подключение модулей
 ├── variables.tf           # Глобальные переменные
@@ -30,40 +41,14 @@ terraform/
 ```
 
 ## Развёртывание
-### 1. Установи зависимости
+```bash
+source start.sh
+```
+
+### Зависимости
 * Terraform 
-```bash
-./scripts/terraform-install.sh
-```
-* Yandex CLI (yc)
-```bash
-./scripts/yc-install.sh
-yc init
-```
-* ssh-keygen для подключения по SSH (если нет ключа)
-```bash
-ssh-keygen -t rsa -b 4096
-```
-
-### 2. Настрой доступ
-Сохрани свои значения в terraform.tfvars:
-
-```bash
-cp terraform/terraform.tfvars.example terraform/terraform.tfvars
-```
-Заполни:
-* zone, docker_image - на своё усмотрение
-* yc_token, yc_cloud_id, yc_folder_id — из ```yc config list```
-* db_password, access_key, secret_key, app_admin_name — безопасные значения
-* bucket_name, access_key, secret_key - из ```./scripts/yc-create-service-account.sh``` или уже созданного service account
-
-### 3. Запуск Terraform
-```bash
-cd ./terraform
-terraform init       # Инициализация
-terraform plan       # Просмотр плана
-terraform apply      # Применение
-```
+* Yandex CLI (yc) - полуавтоматически
+* ssh-keygen для подключения по SSH
 
 ## Проверка
 После apply терраформа получи IP ВМ:
