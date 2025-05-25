@@ -13,19 +13,14 @@ variable "subnet_id" {
   description = "ID подсети"
 }
 
-variable "image_id" {
-  type        = string
-  description = "ID образа ОС"
-}
-
 variable "ssh_public_key" {
   type        = string
   description = "Публичный SSH ключ"
 }
 
-variable "docker_image" {
+variable "docker_tag" {
   type        = string
-  description = "Образ из Container Registry"
+  description = "Тэг образа из Container Registry"
 }
 
 variable "env_vars" {

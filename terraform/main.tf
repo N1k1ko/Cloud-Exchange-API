@@ -16,11 +16,15 @@ provider "yandex" {
 }
 
 module "vpc" {
-  source = "./modules/vpc"
+  source        = "./modules/vpc"
+
+  zone          = var.zone
 }
 
 module "postgres" {
   source        = "./modules/postgres"
+
+  zone          = var.zone
   network_id    = module.vpc.network_id
   subnet_id     = module.vpc.subnet_id
   db_name       = var.db_name
@@ -30,20 +34,20 @@ module "postgres" {
 
 module "storage" {
   source      = "./modules/storage"
+
   bucket_name = var.bucket_name
   access_key  = var.access_key
   secret_key  = var.secret_key
 }
 
-module "app_instance" {
-  source = "./modules/app_instance"
+module "app" {
+  source = "./modules/app"
 
-  instance_name   = "fastapi-vm"
+  instance_name   = "exchange-app"
   zone            = var.zone
   subnet_id       = module.vpc.subnet_id
-  image_id        = "fd86601pa1f50ta9dffg" # ubuntu-24-04-lts-v20241125
-  ssh_public_key  = file("~/.ssh/id_rsa.pub")
-  docker_image    = var.docker_image
+  ssh_public_key  = var.ssh_key
+  docker_tag      = var.app_image_tag
 
   env_vars = {
     APP__RUN__HOST              = "0.0.0.0"
@@ -54,6 +58,6 @@ module "app_instance" {
     APP__DB__PASSWORD           = var.db_password
     APP__DB__NAME               = var.db_name
     APP__DEFAULT_ADMIN__NAME    = var.app_admin_name
-    APP__DEFAULT_ADMIN__API_KEY = "3489da3e-1c5e-4ba6-bd8b-f7cc2e9c0d23"
+    APP__DEFAULT_ADMIN__API_KEY = var.app_admin_key
   }
 }
