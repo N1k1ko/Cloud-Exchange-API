@@ -31,7 +31,7 @@ terraform/
 
 ## Развёртывание
 ```bash
-bash start.sh
+source start.sh
 ```
 
 ### Зависимости

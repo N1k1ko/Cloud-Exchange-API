@@ -43,6 +43,6 @@ echo "bucket_name = \"$BUCKET_NAME\""
 echo "access_key  = \"$ACCESS_KEY\""
 echo "secret_key  = \"$SECRET_KEY\""
 
-export TF_VAR_bucket_name = $BUCKET_NAME
-export TF_VAR_access_key  = $ACCESS_KEY
-export TF_VAR_secret_key  = $SECRET_KEY
+export TF_VAR_bucket_name=$BUCKET_NAME
+export TF_VAR_access_key=$ACCESS_KEY
+export TF_VAR_secret_key=$SECRET_KEY
