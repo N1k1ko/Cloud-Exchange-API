@@ -13,6 +13,7 @@ echo ""
 # === YandexCLI ===
 if ! command -v yc &> /dev/null; then
     ./scripts/dependencies/yc-install.sh
+    export PATH="$HOME/yandex-cloud/bin:$PATH"
 fi
 
 echo "YandexCLI установлен:"
